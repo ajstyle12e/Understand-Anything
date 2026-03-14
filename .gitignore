@@ -3,3 +3,7 @@ dist
 .understand-anything
 *.tsbuildinfo
 .DS_Store
+.env
+.env.*
+coverage/
+*.log
