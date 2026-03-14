@@ -13,7 +13,7 @@ import "@xyflow/react/dist/style.css";
 import CustomNode from "./CustomNode";
 import type { CustomFlowNode } from "./CustomNode";
 import { useDashboardStore } from "../store";
-import { applyDagreLayout } from "../utils/layout.ts";
+import { applyDagreLayout } from "../utils/layout";
 
 const nodeTypes = { custom: CustomNode };
 

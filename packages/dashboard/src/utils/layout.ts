@@ -31,6 +31,7 @@ export function applyDagreLayout(
 
   const layoutedNodes = nodes.map((node) => {
     const pos = g.node(node.id);
+    if (!pos) return { ...node, position: { x: 0, y: 0 } };
     return {
       ...node,
       position: {
