@@ -3,6 +3,10 @@
 ## Project Overview
 An open-source tool combining LLM intelligence + static analysis to produce interactive dashboards for understanding codebases.
 
+## Prerequisites
+- Node.js >= 22 (developed on v24)
+- pnpm >= 10 (pinned via `packageManager` field in root `package.json`)
+
 ## Architecture
 - **Monorepo** with pnpm workspaces
 - **understand-anything-plugin/** — Claude Code plugin containing all source code:
@@ -34,6 +38,7 @@ An open-source tool combining LLM intelligence + static analysis to produce inte
 - `pnpm --filter @understand-anything/skill test` — Run plugin tests
 - `pnpm --filter @understand-anything/dashboard build` — Build the dashboard
 - `pnpm dev:dashboard` — Start dashboard dev server
+- `pnpm lint` — Run ESLint across the project
 
 ## Conventions
 - TypeScript strict mode everywhere
@@ -41,6 +46,10 @@ An open-source tool combining LLM intelligence + static analysis to produce inte
 - ESM modules (`"type": "module"`)
 - Knowledge graph JSON lives in `.understand-anything/` directory of analyzed projects
 - Core uses subpath exports (`./search`, `./types`, `./schema`) to avoid pulling Node.js modules into browser
+
+## Gotchas
+- **tree-sitter**: Uses `web-tree-sitter` (WASM) instead of native `tree-sitter` — native bindings fail on darwin/arm64 + Node 24
+- **Dashboard imports**: Dashboard must only import from core's browser-safe subpath exports (`./search`, `./types`, `./schema`), never the main entry point which pulls in Node.js modules
 
 ## Versioning
 When pushing to remote, bump the version in **both** of these files (keep them in sync):
